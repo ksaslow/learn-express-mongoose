@@ -12,6 +12,10 @@ function get_book(id) {
 function get_book_dtl(id) {
   return BookInstance
           .find({ 'book': id })
+              // note the security vulnerability here by usind id directly in the query!
+              // we are directly using id without sanitizing the input first
+              // could lead to a SQL injection!!!
+              // use variables in a way that ensures that a script cannot be injected!
           .select('imprint status');
 }
 

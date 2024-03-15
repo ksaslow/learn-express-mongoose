@@ -7,9 +7,9 @@ function get_books () {
     .populate('author');
 }
 
-exports.show_books = async () => {
+exports.show_books = async () => { // async function
   try {
-    let books = await get_books().exec();
+    let books = await get_books().exec(); // get_books function is actually a query (see above)
     return books.map(function(b) {
       return b._id + ' : ' + b.title + ' : ' + Author(b.author).name;
     });
